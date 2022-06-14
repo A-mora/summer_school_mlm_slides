@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Multilevel Model for binary response</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dr Ana Morales &amp; Dr Patricio Troncoso" />
+    <meta name="date" content="2022-06-14" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Multilevel Model for binary response
+## Summer School
+### Dr Ana Morales &amp; Dr Patricio Troncoso
+### The University of Edinburgh
+### 2022-06-14
+
+---
+
+
+
+
+
+
+
+class: center, middle, inverse
+
+## TODAY'S GOAL
+
+.left[]
+
+
+
+
+---
+## When to use Multilevel models for binary response?
+
+### Recidivism Study in Chile
+
+.pull-left[
+
+
+**Data**: criminal history data of a cohort of individuals released from prison 
+
+**Outcome**: Whether a *persons* got a new conviction or not
+
+**Levels**: *Individual* (level 1) nested within *prisons* (level 2)
+
+]
+
+.pull-right[
+
+
+&lt;img src="images/hedi-benyounes-G_gOhJeCpMg-unsplash.jpg" width="90%" align="right"/&gt;
+
+]
+---
+
+## When to use Multilevel models for binary response?
+
+### Controlled Delivery of Drug Parcels in Scotland
+
+.pull-left[
+
+
+
+&lt;img src="images/markus-spiske-BPxkU4uPq6Y-unsplash.jpg" width="90%" align="left"/&gt;
+
+]
+
+.pull-right[
+
+
+**Data**: Drug parcels seized by the UKBF en route to Scotland
+
+**Outcome**: Whether a *parcel* was adopted for a controlled delivery or not
+
+**Levels**: drug parcels (level 1) nested within *Local Authorities* (level 2)
+
+]
+
+
+---
+
+#.center[Multilevel models for binary response]
+
+The multilevel linear model is generally appropriate when the outcome is continuous and
+normally distributed
+
+--
+
+Other type of data do not satisfy the assumption of normality: Count data, categorical data, ordinal data, etc. 
+
+--
+
+Just as in the well-known single level models, we use logistic regression in multilevel modeling when the outcome variable is binary (Yes/No)
+
+---
+class: middle
+
+## Examples
+
+--
+
+- Whether someone reoffend or not
+
+--
+
+- Whether someone was victim of a crime or not
+
+--
+
+- Intention to vote in the next elections
+
+
+---
+##  Logistic regression (Recap)
+
+Asume we want to analyse employment pattern in a sample of people
+
+We have binary variable `\(Y\)` indicating employoment status where:
+ - 1 = employed
+ - 0 = unemployed
+
+We can use linear regression as many of the assumption for linear regression are not satisfied
+- Values are bounded by 0 and 1 
+- We can't assume normality 
+
+
+We model the probability that `\(y = 1\)` (i.e. employed)
+
+`$$Pr(y_i=1) = p_i$$`
+
+---
+class: middle
+
+## Logistic regression (Recap)
+
+
+We use a logistic or **logit** transformation of the outcome to *link* the dependant variable to a set of explanatory variables
+
+`$$logit(p_i)=\log\left(\frac{p_{i}}{1-p_{i}}\right)$$`
+We can write the model:
+`$$logit(p_i)=\log\left(\frac{p_{i}}{1-p_{i}}\right) =  \beta_0+\beta_1x_{i}$$`
+
+
+The logit link function keep values in a range between 0 and 1
+
+- This is necessary as probabilities must be between 0 and 1
+
+- We can write the equation in terms of odds:
+
+`$$\frac{p_{i}}{1-p_{i}} =  \exp(\beta_0+\beta_1x_{i})$$`
+---
+class:middle
+
+## Two level random intercept model for binary response
+
+Using the same example, imagine that we now have an additional variable indicating local authorities where respondents live
+
+Consider a two-level structure where `\(n\)` individuals `\(i\)` are nested within groups `\(J\)`
+- Group can be any level two unit (school, cities, etc.)
+
+.pull-left[
+
+`$$\log\left(\frac{p_{ij}}{1-p_{ij}}\right)  = \beta_0+\beta_1x_{ij}+u_j$$`
+&lt;br&gt;
+&lt;br&gt;
+where
+&lt;br&gt;
+&lt;br&gt;
+`$$u_j \sim N(0,\sigma^2_u)$$`
+
+]
+
+.pull-right[
+
+The left side is the nonlinear transformation (log odd)
+
+the right side take the form of a linear model
+
+&lt;br&gt;
+
+The group effect or level two residuals `\(u_j\)` are assumed to be independent and follow a normal distribution
+
+]
+---
+class: middle
+
+## Interpretation of main parameters
+
+--
+`\(\beta_0\)` is the *overall intercept*
+--
+
+- `\(\beta_0\)` is the log-odds that `\(y=1\)` when `\(x=0\)` and `\(u=0\)`
+
+--
+
+`\(\beta_1\)` is usually referred as *cluster-specific* effect
+
+--
+
+- `\(\beta_1\)` is the effect of a 1-unit chage in `\(x\)` in the log-odds that `\(y=1\)`, while adjusting for group effect `\(u\)`
+
+--
+
+`\(u_j\)` is the *group random effect* or level two residual
+
+--
+
+- `\(\beta_0 + u_j\)` is the intercept for a given group `\(j\)`
+
+--
+
+- `\(var(u_j) = \sigma_u^2\)` is the between-group variance and represent the variability across groups
+
+
+---
+class: middle
+## Variance Partition Coefficient (VPC)
+
+Measures the proportion of the total variance that is due to differences between groups
+
+--
+
+There a several ways of defining VPC for binary data:
+- Model linearization
+- Simulation
+- .bold[&lt;font color="#314152"&gt;Latent Variable approach&lt;/font&gt;]
+
+
+for more details [click here](https://rss.onlinelibrary.wiley.com/doi/epdf/10.1111/j.1467-985X.2004.00365.x?saml_referrer)
+
+.center[&lt;img src="images/VPC article.png", width="50%"/&gt;]
+
+
+---
+class: middle
+###VPC  Latent Variable Approach
+Recall VPC formula for continuous response:
+`$$VPC = \frac{\sigma_u^2}{\sigma_u^2 + \sigma_e^2}$$`
+
+Assume that the underlying response variable is *continuous* but we can only observe a **binary response** indicating whether the underlying variable is greater or less than a given threshold.
+
+This underlying continuous variable come from a logistic distribution with a variance of `\(\frac{\pi^2}{3} \approx 3.29\)`
+
+Replacing on the previus formula:
+
+`$$VPC = \frac{\sigma_u^2}{\sigma_u^2 + \sigma_e^2*}$$`  
+where `\(\sigma_e^2*= \frac{\pi^2}{3}\)`
+
+
+---
+## Example
+
+### Antenatal care in Bangladesh
+
+We want to analyse whether a woman received antenatal care from a medically-trained provider at least once before her most recent live birth. 
+
+We also want to explore whether antenatal care **varies across communities**
+
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Variables &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Description &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Level &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; comm &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Community identifier &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; antemed &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Received antenatal care at least once  (1 = yes, 0 = no) &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; mage &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Mother's age at the child's birth (in years) &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; urban &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Type of region of residence  (1 = urban, 0 = rural) &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+There are level 1 variable (individual level)  and level 2 variables (area level).
+- antemed: Outcome 
+- comm: Level 2 identifier
+---
+
+
+
+class: middle
+
+##R output
+
+```r
+fit &lt;- glmer(antemed ~    # Outcome variable
+             (1 | comm),  # level two specification
+*            family = binomial("logit"),  ##link function
+             data = mydata)
+```
+
+###**Fixed part**
+
+
+```
+Fixed effects:
+            Estimate Std. Error z value Pr(&gt;|z|)  
+*(Intercept)  0.14809    0.07178   2.063   0.0391 *
+---
+Signif. codes:  
+0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+```
+
+###**Interpretation**
+
+The log-odds of receiving antenatal care in an ‘average’ community `\((u_j=0)\)` is estimated as `\(\beta_0=0.148\)`.
+
+---
+class: middle
+
+## R Output (2)
+
+###**Random part**
+```
+Random effects:
+ Groups Name        Variance Std.Dev.
+ *comm   (Intercept) 1.464    1.21    
+Number of obs: 5366, groups:  comm, 361
+```
+###**Interpretation**
+
+The intercept for community `\(j\)` is `\(0.148+u_j\)`, where the variance of `\(u_j\)` is estimated as `\(\sigma^2_u=1.464\)`
+
+---
+## Adding explanatory variables
+
+
+###**We add maternal age (level 1 predictor)**
+ 
+```
+Fixed effects:
+             Estimate Std. Error z value Pr(&gt;|z|)    
+*(Intercept)  0.144604   0.071781   2.015    0.044 *  
+*magec       -0.032357   0.005235  -6.181 6.37e-10 ***
+---
+Signif. codes:  
+0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+
+&lt;br&gt;
+
+###**We add Urban (level 2 predictor)**
+
+```
+Fixed effects:
+             Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept) -0.346247   0.074256  -4.663 3.12e-06 ***
+magec       -0.032481   0.005221  -6.221 4.94e-10 ***
+*urban        1.494405   0.132870  11.247  &lt; 2e-16 ***
+---
+```
+
+
+---
+class: center, middle, inverse
+
+## Practical 3
+
+--
+
+.left[Fit a two-level logistic model in R]
+
+.left[Interpret the main results]
+
+---
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"countIncrementalSlides": false,
+"highlightStyle": "solarized-light",
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
