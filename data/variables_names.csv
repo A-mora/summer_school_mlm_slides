@@ -1,0 +1,5 @@
+Variables ,Description ,Level
+comm,Community identifier,2
+antemed,"Received antenatal care at least once  (1 = yes, 0 = no)",1
+mage,Mother's age at the child's birth (in years),1
+urban,"Type of region of residence  (1 = urban, 0 = rural)",2
