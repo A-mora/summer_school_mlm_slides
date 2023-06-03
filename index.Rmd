@@ -1,7 +1,7 @@
 ---
 title: "<span style = 'font-size: 85%; color: white'>Introduction to Multilevel Modelling</span>"
-subtitle: "<span style = 'font-size: 80%;'>SGSSS Summer School 2022</span>"
-author: "Patricio Troncoso & Ana Morales-Gómez<br><span style = 'font-size: 60%;'>Heriot-Watt University<br>University of Edinburgh<br>Scottish Centre for Administrative Data Research (SCADR)</span>" 
+subtitle: "<span style = 'font-size: 80%;'>SGSSS Summer School 2023</span>"
+author: "Patricio Troncoso & Ana Morales-Gómez<br><span style = 'font-size: 60%;'>The University of Glasgow<br>University of Sheffield<br>Scottish Centre for Administrative Data Research (SCADR)</span>" 
 output:
   xaringan::moon_reader:
     css: xaringan-themer.css
@@ -13,7 +13,7 @@ output:
 ---
 ```{r xaringan-themer, include=FALSE, warning=FALSE}
 library(xaringanthemer)
-style_mono_light(
+style_mono_accent(
   base_color = "#3f5264", 
   code_highlight_color = "#c0e8f5",
   link_color = "#197b9e",
@@ -42,7 +42,7 @@ class: left, middle, inverse
 .center[**Patricio Troncoso**
 ]
 ```{r, out.width = '25%', echo = FALSE, fig.align="center"}
-knitr::include_graphics("https://i-sphere.site.hw.ac.uk/wp-content/uploads/sites/15/2021/01/PATRICIO-e1611159639790-225x300.jpg")
+knitr::include_graphics("https://www.scadr.ac.uk/sites/default/files/styles/people_profiles_pic/public/Patricio%20Troncoso%2C%202nd%20edit.jpg?itok=tV4ciTAz")
 
 ```
 
@@ -52,7 +52,7 @@ knitr::include_graphics("https://i-sphere.site.hw.ac.uk/wp-content/uploads/sites
 
 - Twitter: [@ptronc](https://twitter.com/ptronc)
 
-- Email: [p.troncoso@hw.ac.uk](mailto:p.troncoso@hw.ac.uk)
+- Email: [Patricio.Troncoso@glasgow.ac.uk](mailto:Patricio.Troncoso@glasgow.ac.uk)
 
 ]
 
@@ -66,13 +66,13 @@ knitr::include_graphics("https://pbs.twimg.com/profile_images/132681187875299737
 ```
 
 
-- Research Fellow, School of Law, The University of Edinburgh 
+- Lecturer in Criminology, The University of Sheffield 
 
 - Works (mostly) in Criminological research
 
 - Twitter: [@A_moralesgomez](https://twitter.com/A_moralesgomez)
 
-- Email: [Ana.Morales@ed.ac.uk](mailto:Ana.Morales@ed.ac.uk)
+- Email:  [a.morales-gomez@sheffield.ac.uk](mailto:a.morales-gomez@sheffield.ac.uk)
 ]
 
 <br>
@@ -1630,7 +1630,7 @@ $\beta_1$ is usually referred to as the *cluster-specific* effect
 
 --
 
-$u_j$ is the *group random effect* or level two residual
+$u_j$ is the *group random effect* or level two residual for group (cluster) $j$
 
 --
 
@@ -1768,7 +1768,9 @@ Number of obs: 5366, groups:  comm, 361
 
 ###**Interpretation**
 
-The intercept for community $j$ is $0.148+u_j$, where the variance of $u_j$ is estimated as $\sigma^2_u=1.464$
+The intercept for community $j$ is defined as $\beta_0 + u_j$, where $\beta_0 = 0.148$ and $u_j$ is the level 2 residual for group $j$. 
+
+The variance of $u_j$ is estimated as $\sigma^2_u=1.464$
 
 ---
 ## Adding explanatory variables (1)

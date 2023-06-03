@@ -3,16 +3,23 @@
   <head>
     <title>Introduction to Multilevel Modelling</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Patricio Troncoso &amp; Ana Morales-Gómez Heriot-Watt University University of Edinburgh Scottish Centre for Administrative Data Research (SCADR)" />
+    <meta name="author" content="Patricio Troncoso &amp; Ana Morales-Gómez The University of Glasgow University of Sheffield Scottish Centre for Administrative Data Research (SCADR)" />
+    <script src="index_files/header-attrs-2.20/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # <span style="font-size: 85%; color: white">Introduction to Multilevel Modelling</span>
-## <span style="font-size: 80%;">SGSSS Summer School 2022</span>
-### Patricio Troncoso &amp; Ana Morales-Gómez<br><span style="font-size: 60%;">Heriot-Watt University<br>University of Edinburgh<br>Scottish Centre for Administrative Data Research (SCADR)</span>
+]
+.subtitle[
+## <span style="font-size: 80%;">SGSSS Summer School 2023</span>
+]
+.author[
+### Patricio Troncoso &amp; Ana Morales-Gómez<br><span style="font-size: 60%;">The University of Glasgow<br>University of Sheffield<br>Scottish Centre for Administrative Data Research (SCADR)</span>
+]
 
 ---
 
@@ -31,7 +38,7 @@ class: left, middle, inverse
 
 .center[**Patricio Troncoso**
 ]
-&lt;img src="https://i-sphere.site.hw.ac.uk/wp-content/uploads/sites/15/2021/01/PATRICIO-e1611159639790-225x300.jpg" width="25%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://www.scadr.ac.uk/sites/default/files/styles/people_profiles_pic/public/Patricio%20Troncoso%2C%202nd%20edit.jpg?itok=tV4ciTAz" width="25%" style="display: block; margin: auto;" /&gt;
 
 - Research Fellow, I-SPHERE, Heriot-Watt University
 
@@ -39,7 +46,7 @@ class: left, middle, inverse
 
 - Twitter: [@ptronc](https://twitter.com/ptronc)
 
-- Email: [p.troncoso@hw.ac.uk](mailto:p.troncoso@hw.ac.uk)
+- Email: [Patricio.Troncoso@glasgow.ac.uk](mailto:Patricio.Troncoso@glasgow.ac.uk)
 
 ]
 
@@ -50,13 +57,13 @@ class: left, middle, inverse
 &lt;img src="https://pbs.twimg.com/profile_images/1326811878752997376/7dvI51qy_400x400.jpg" width="30%" style="display: block; margin: auto;" /&gt;
 
 
-- Research Fellow, School of Law, The University of Edinburgh 
+- Lecturer in Criminology, The University of Sheffield 
 
 - Works (mostly) in Criminological research
 
 - Twitter: [@A_moralesgomez](https://twitter.com/A_moralesgomez)
 
-- Email: [Ana.Morales@ed.ac.uk](mailto:Ana.Morales@ed.ac.uk)
+- Email:  [a.morales-gomez@sheffield.ac.uk](mailto:a.morales-gomez@sheffield.ac.uk)
 ]
 
 &lt;br&gt;
@@ -212,6 +219,12 @@ This is what we typically call "the line of best fit", because it reduces the er
 
 
 In the presence of an association between two variables, we can fit a straight line to define the relationship
+
+
+```
+## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-7-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 
@@ -1556,7 +1569,7 @@ class: middle
 
 --
 
-`\(u_j\)` is the *group random effect* or level two residual
+`\(u_j\)` is the *group random effect* or level two residual for group (cluster) `\(j\)`
 
 --
 
@@ -1716,7 +1729,9 @@ Number of obs: 5366, groups:  comm, 361
 
 ###**Interpretation**
 
-The intercept for community `\(j\)` is `\(0.148+u_j\)`, where the variance of `\(u_j\)` is estimated as `\(\sigma^2_u=1.464\)`
+The intercept for community `\(j\)` is defined as `\(\beta_0 + u_j\)`, where `\(\beta_0 = 0.148\)` and `\(u_j\)` is the level 2 residual for group `\(j\)`. 
+
+The variance of `\(u_j\)` is estimated as `\(\sigma^2_u=1.464\)`
 
 ---
 ## Adding explanatory variables (1)
@@ -2137,6 +2152,7 @@ class: left, middle, inverse
 
 
 # Thank you!
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -2184,6 +2200,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
