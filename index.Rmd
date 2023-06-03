@@ -266,15 +266,15 @@ In the presence of an association between two variables, we can fit a straight l
     annotate("text", x = -1, y = 3.4, label = "Intercept = 2.07") +
     annotate("text", x = 1.5, y = 3.4, label = "Slope = 3.14") +
     geom_segment(aes(x = -1, y = 3, xend = 0, yend = 2.07),
-                 size = 1,
+                 linewidth = 1,
                  arrow = arrow(length = unit(0.2, "cm")),
                  colour = "blue") +
     geom_segment(aes(x = 1, y = 2.07, xend = 1, yend = 5.2),
-                 size = 1,
+                 linewidth = 1,
                  linetype = "dashed",
                  colour = "blue") +
     geom_segment(aes(x = 0, y = 2.07, xend = 1, yend = 2.07),
-                 size = 1,
+                 linewidth = 1,
                  linetype = "dashed",
                  colour = "blue")
   )
@@ -1959,7 +1959,7 @@ class: middle
 knitr::include_graphics("https://raw.githubusercontent.com/patroncos/Summer_School_June22/main/images/randslop2.PNG")
 ```
 
-- Suppose this is relationship between attainment at 16 ($y$) and attainment on entry to the school ($x$).
+- Suppose this is relationship between attainment at 16 $(y)$ and attainment on entry to the school $(x)$.
 
 
 - Across range of $x$, school 1 is more effective than school 2.
@@ -1971,7 +1971,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/patroncos/Summer_Scho
 
 .pull-right[
 
-- But difference between the two schools widens as x increases.
+- But difference between the two schools widens as $x$ increases.
 
 - So choice of school is particularly important among children with high prior attainment.
 
