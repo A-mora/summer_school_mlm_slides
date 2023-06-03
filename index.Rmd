@@ -1,7 +1,7 @@
 ---
 title: "<span style = 'font-size: 85%; color: white'>Introduction to Multilevel Modelling</span>"
 subtitle: "<span style = 'font-size: 80%;'>SGSSS Summer School 2023</span>"
-author: "Patricio Troncoso & Ana Morales-Gómez<br><span style = 'font-size: 60%;'>The University of Glasgow<br>University of Sheffield<br>Scottish Centre for Administrative Data Research (SCADR)</span>" 
+author: "Patricio Troncoso & Ana Morales-Gómez<br><span style = 'font-size: 60%;'>University of Glasgow<br>University of Sheffield<br>Scottish Centre for Administrative Data Research (SCADR)</span>" 
 output:
   xaringan::moon_reader:
     css: xaringan-themer.css
@@ -46,7 +46,7 @@ knitr::include_graphics("https://www.scadr.ac.uk/sites/default/files/styles/peop
 
 ```
 
-- Research Fellow, I-SPHERE, Heriot-Watt University
+- Research Fellow, Urban Studies, University of Glasgow
 
 - Works (mostly) in Educational research
 
@@ -66,7 +66,7 @@ knitr::include_graphics("https://pbs.twimg.com/profile_images/132681187875299737
 ```
 
 
-- Lecturer in Criminology, The University of Sheffield 
+- Lecturer in Criminology, University of Sheffield 
 
 - Works (mostly) in Criminological research
 
@@ -76,7 +76,7 @@ knitr::include_graphics("https://pbs.twimg.com/profile_images/132681187875299737
 ]
 
 <br>
-We both work in the Scottish Centre for Administrative Data Research (SCADR). Find out more [here](https://www.scadr.ac.uk/)
+We are both affiliated to the Scottish Centre for Administrative Data Research [(SCADR)](https://www.scadr.ac.uk/)
 ---
 
 ## Today's programme
