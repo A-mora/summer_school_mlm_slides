@@ -118,10 +118,51 @@ class: middle
 --
 
 - Interpret the R output of standard multilevel models
+---
+class: left, middle, inverse
+
+### <font color="white">Introduction </font>
 
 ---
+## What is Multilevel Modelling?
+--
+
+- Difficult to define without making reference to what it is for.
+
+--
+
+- Umbrella term for a wide range of statistical models designed to account for nested/clustered/hierarchical data
+
+--
+
+- These models allow us to investigate the relationships between variables characterising not only individuals, but also groups.
+    - This is commonly of interest in social sciences, where context matters!
+
+--
+
+- MLM contests the notion of randomness and independence, especially in the social sciences
+    - People have things in common, such as doing the same degree, living in the same area, working in the same organisation, etc.
+    - this makes the assumption of independence likely untenable.
+    - Data is hierarchical structured (e.g., People/GP/Health Board)
+    
+---
+##What about traditional regression models?
+
+--
+
+- Regression models have assumptions that real data tend to digress from:  
+    - Independence of observations
+    - Homogeneity of variance
+
+--
+
+- They are still useful in many situations:  
+  - When the hierarchical feature of the data is not available, this can be due to: privacy, data availability, etc.
+  - When the structure of the data is not of interest, then the clustering can be simply treated as a nuisance that needs to be accounted for.
+  
 
 
+---
 class: left, middle, inverse
 
 ### <font color="white">Part One: </font>
