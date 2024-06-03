@@ -50,7 +50,7 @@ knitr::include_graphics("https://www.scadr.ac.uk/sites/default/files/styles/peop
 
 - Works (mostly) in Educational research
 
-- Twitter: [@p_tronc](https://twitter.com/ptronc)
+- Twitter: [@p_tronc](https://x.com/p_tronc)
 
 - Email: [Patricio.Troncoso@ed.ac.uk](mailto:Patricio.Troncoso@ed.ac.uk)
 
